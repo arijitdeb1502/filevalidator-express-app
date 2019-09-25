@@ -9,10 +9,21 @@ yargs.command({
             describe : 'Name of the input field',
             demandOption : true,
             type: 'string'
+        },
+        keyfld: {
+            describe : 'Name of the key field used to uniquely match input and output',
+            demandOption : true,
+            type: 'string'
+        },
+        keyval: {
+            describe : 'Value of the key field used to uniquely match input and output',
+            demandOption : true,
+            type: 'number'
         }
     },
     handler(argv) {
-        utils.inpVsOutputMap(argv.inpfld);
+        const mappingDetails=utils.inpVsOutputMap(argv.inpfld,argv.keyfld,argv.keyval);
+        console.log(mappingDetails);
     }   
 })
 
