@@ -4,8 +4,8 @@ const path = require('path');
 
 const inpVsOutputMap=(inpFldName,keyFld,keyVal)=>{
     
-    
-    const mappingFile=fs.readFileSync('./layout/ipVsOpMapping.cfg',{ encoding: 'utf8' });
+    const layoutFname=path.join(__dirname,'/layout/ipVsOpMapping.cfg');
+    const mappingFile=fs.readFileSync(layoutFname,{ encoding: 'utf8' });
     const {
         startInp , 
         endInp , 
@@ -20,10 +20,6 @@ const inpVsOutputMap=(inpFldName,keyFld,keyVal)=>{
         opLineSelected 
     }=matchInpOpWithKey(keyFld,keyVal);
 
-    // console.log(inpLineSelected.substring(startInp,endInp));
-    // console.log(transformInd);
-    // console.log(opFldName);
-    // console.log(opLineSelected.substring(startOp,endOp));
 
     return {
         inpFldName,
