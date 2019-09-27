@@ -5,6 +5,7 @@ const app=express();
 const port=process.env.PORT||3000;
 
 //Sample Request String:  http://localhost:3000/fixedfilemap?fld=inpfld2&key=inpFld5&keyval=689208
+//https://file-validator-filesystem.herokuapp.com/fixedfilemap?fld=inpfld2&key=inpFld5&keyval=689208
 
 app.get('/fixedfilemap',(req,res)=>{
 

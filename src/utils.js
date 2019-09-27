@@ -35,6 +35,9 @@ const getFldToValidateProp = (mappingFile,inpFldName) =>{
     
     const mappingFileLineArr=mappingFile.split('\r\n').find( (line)=>line.split(',')[0]===inpFldName ).split(',');
 
+    console.log(mappingFile);
+    console.log(inpFldName);
+
     const startInp=mappingFileLineArr[1];
     const endInp=mappingFileLineArr[2];
     const transformInd=mappingFileLineArr[3];
