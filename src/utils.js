@@ -32,7 +32,7 @@ const inpVsOutputMap=(inpFldName,keyFld,keyVal)=>{
 }
 
 const getFldToValidateProp = (mappingFile,inpFldName) =>{
-
+    
     const mappingFileLineArr=mappingFile.split('\r\n').find( (line)=>line.split(',')[0]===inpFldName ).split(',');
 
     const startInp=mappingFileLineArr[1];
