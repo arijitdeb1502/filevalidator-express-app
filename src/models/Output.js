@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
-const Input = mongoose.model('Input',{
+const Output = mongoose.model('Output',{
 
-    inpfldname: {
+    opfldname: {
         type: String,
         required: true,
         trim: true
@@ -24,17 +24,7 @@ const Input = mongoose.model('Input',{
                 throw new Error('endpos must not be a negative number');
             }
         }
-    },
-    transformlogic : {
-        type: String,
-        required: true,
-        trim: true
-    },
-    opfldname : {
-        type: String,
-        required: true,
-        trim: true
     }
 })
 
-module.exports=Input;
+module.exports=Output;
