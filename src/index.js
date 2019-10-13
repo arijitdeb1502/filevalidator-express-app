@@ -1,6 +1,4 @@
 const express=require('express');
-const path=require('path');
-
 
 const mapperRouter=require('./routers/mapper');
 
@@ -11,13 +9,7 @@ const app=express();
 
 const port=process.env.PORT||3000;
 
-// app.use((req,res,next)=>{
-//     const fileName=path.join(__dirname,'layout/');
-//     console.log(req);
-//     console.log(req.method,req.path);
-//     //next();
 
-// })
 //Sample Request String:  http://localhost:3000/fixedfilemap?fld=inpfld2&key=inpFld5&keyval=689208
 //https://file-validator-filesystem.herokuapp.com/fixedfilemap?fld=inpfld2&key=inpFld5&keyval=689208
 
