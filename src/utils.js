@@ -2,6 +2,7 @@ const fs=require('fs');
 const path = require('path');
 
 
+
 const inpVsOutputMap=(inpFldName,keyFld,keyVal)=>{
     
     const layoutFname=path.join(__dirname,'/layout/ipVsOpMapping.cfg');
