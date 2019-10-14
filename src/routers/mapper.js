@@ -1,50 +1,47 @@
 const express = require('express')
 const router = new express.Router()
+const utils=require('./utils/utils');
 
-const path=require('path');
-const multer=require('multer');
-const fs = require('fs')
 
-const destFname = path.join(__dirname,'../layout')
+/*Endpoint to get the 
+  inpFldName,
+  inpFldVal,
+  transformInd,
+  opFldName and opFldVal
+  provided in the req 
+  we have the inp fld name,
+  inp Vs op key fld name and 
+  corresponding inp key value */
+  router.get('/fixedfilemap',(req,res)=>{
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {  
-      cb(null, destFname)
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.originalname)
+    if(!req.query.fld){
+        return res.send({
+            error: 'The name of the fld to be mapped must be provided in the query string!!'
+        })
     }
-  })
 
-
-
-const upload = multer(
-{ 
-    storage: storage,
-    limits:{
-        fileSize: 5000
+    if(!req.query.key){
+        return res.send({
+            error: 'The name of the key to match input/output layouts/values must be provided in the query string!!'
+        })
     }
-});
 
-// console.log(upload.storage.getFilename());
+    if(!req.query.keyval){
+        return res.send({
+            error: 'The value of the key to match input/output layouts/values must be provided in the query string!!'
+        })
+    }
 
-/* This endpoint is responsible for uploading file layouts/mappings to the application.
-   Facilitates file Posting */
-router.post('/uploadmapping',upload.single('mappingfile'),(req,res)=>{
+    const {inpFldName,inpFldVal,transformInd,opFldName,opFldVal}=utils.inpVsOutputMap(req.query.fld,req.query.key,req.query.keyval);
     
-    // const fileName=path.join(req.file,req.file.filename);
-    // if (fs.existsSync(fileName)) {
-        res.status(201).send({
-            Message: 'Mapping FileUpload successful!!'
-        });
-    // } else {
-    //     res.status(500).send({
-    //         Error: `File ${fileName} has not been uploaded!!!`
-    //     });
-    // }
-
-    console.log(req.destination);
-
+    res.send({
+        inpFldName,
+        inpFldVal,
+        transformInd,
+        opFldName,
+        opFldVal
+    });
 })
+
 
 module.exports=router;

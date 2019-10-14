@@ -1,7 +1,7 @@
 const express=require('express');
 
+const layoutRouter=require('./routers/layout');
 const mapperRouter=require('./routers/mapper');
-const validatorRouter=require('./routers/validator');
 
 
 
@@ -17,8 +17,8 @@ const port=process.env.PORT||3000;
 
 
 app.use(express.json());
+app.use(layoutRouter);
 app.use(mapperRouter);
-app.use(validatorRouter);
 
 
 app.listen(port,()=>{
