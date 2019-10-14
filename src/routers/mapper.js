@@ -8,7 +8,7 @@ const fs = require('fs')
 const destFname = path.join(__dirname,'../layout')
 
 const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
+    destination: function (req, file, cb) {  
       cb(null, destFname)
     },
     filename: function (req, file, cb) {
@@ -26,40 +26,25 @@ const upload = multer(
     }
 });
 
-// function checkUploadPath(req, res, next) {
-//     fs.exists(uploadPath, function(exists) {
-//        if(exists) {
-//          next();
-//        }
-//        else {
-//          fs.mkdir(uploadPath, function(err) {
-//            if(err) {
-//              console.log('Error in folder creation');
-//              next(); 
-//            }  
-//            next();
-//          })
-//        }
-//     })
-// }
+// console.log(upload.storage.getFilename());
 
-const checkUploadPath = async (req,res,next)=> {
-    const fileName=path.join(req.file.destination,req.file.filename);
-    // console.log(fileName);
-
-    if (fs.existsSync(fileName)) {
-        return res.status(409).send({
-            error: 'Mapping file already exists,Please check and delete before uploading'
-        })
-    }else {
-        next();
-    }
-}
 /* This endpoint is responsible for uploading file layouts/mappings to the application.
    Facilitates file Posting */
-router.post('/uploadmapping',upload.single('mappingfile'),checkUploadPath,(req,res)=>{
+router.post('/uploadmapping',upload.single('mappingfile'),(req,res)=>{
     
-    res.status(201).send();
+    // const fileName=path.join(req.file,req.file.filename);
+    console.log(req.IncomingMessage);
+    // if (fs.existsSync(fileName)) {
+        res.status(201).send({
+            Message: 'Mapping FileUpload successful!!'
+        });
+    // } else {
+    //     res.status(500).send({
+    //         Error: `File ${fileName} has not been uploaded!!!`
+    //     });
+    // }
+
+    // console.log(req.upload);
 
 })
 
