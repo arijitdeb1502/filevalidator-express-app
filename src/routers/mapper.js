@@ -33,7 +33,6 @@ const upload = multer(
 router.post('/uploadmapping',upload.single('mappingfile'),(req,res)=>{
     
     // const fileName=path.join(req.file,req.file.filename);
-    console.log(req.IncomingMessage);
     // if (fs.existsSync(fileName)) {
         res.status(201).send({
             Message: 'Mapping FileUpload successful!!'
@@ -44,7 +43,7 @@ router.post('/uploadmapping',upload.single('mappingfile'),(req,res)=>{
     //     });
     // }
 
-    // console.log(req.upload);
+    console.log(req.destination);
 
 })
 
