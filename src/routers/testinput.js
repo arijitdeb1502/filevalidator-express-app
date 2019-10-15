@@ -5,7 +5,7 @@ const path=require('path');
 const multer=require('multer');
 const fs=require('fs');
 
-const destFnameLayout= path.join(__dirname,'../layout')
+const destFnameLayout= path.join(__dirname,'../input')
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {  
@@ -29,7 +29,7 @@ const upload = multer(
 { 
     storage: storage,
     limits:{
-        fileSize: 5000
+        fileSize: 50000
     }
 });
 
@@ -38,35 +38,13 @@ const upload = multer(
 
 /* This endpoint is responsible for uploading file layouts/mappings to the application.
    Facilitates file Posting */
-router.post('/uploadmapping',upload.single('mappingfile'),(req,res)=>{
+router.post('/uploadinputfixed',upload.single('inputfixedfile'),(req,res)=>{
 
         res.status(201).send({
             MappingFile : req.file.originalname,
-            Message     : 'Mapping FileUpload successful!!'
+            Message     : 'test input fixed formatted FileUpload successful!!'
         });
 
-})
-
-
-
-/* This endpoint is responsible for uploading file input layout to the application.
-   Facilitates file Posting */
-router.post('/uploadinputlayout',upload.single('inputlayout'),(req,res)=>{
-        res.status(201).send({
-          InputLayoutFile : req.file.originalname,
-          Message         : 'Input layout File Upload successful!!'
-        });
-})
-
-
-/* This endpoint is responsible for uploading file output layout to the application.
-   Facilitates file Posting */
-   router.post('/uploadoutputlayout',upload.single('outputlayout'),(req,res)=>{
-
-    res.status(201).send({
-        OutputLayoutFile : req.file.originalname,
-        Message         : 'Output layout File Upload successful!!'
-    });
 })
 
 module.exports=router;

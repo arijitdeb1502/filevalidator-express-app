@@ -2,6 +2,9 @@ const express=require('express');
 
 const layoutRouter=require('./routers/layout');
 const mapperRouter=require('./routers/mapper');
+const testinputRouter=require('./routers/testinput');
+const testoutputRouter=require('./routers/testoutput');
+
 
 
 
@@ -19,10 +22,14 @@ const port=process.env.PORT||3000;
 
 // D:\workspace_NJ_ANG_EXT\file-validator-app>
 
+//heroku git:remote -a ardeb-file-validator-app
+
 
 app.use(express.json());
 app.use(layoutRouter);
 app.use(mapperRouter);
+app.use(testinputRouter);
+app.use(testoutputRouter);
 
 
 app.listen(port,()=>{
