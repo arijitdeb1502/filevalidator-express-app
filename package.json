@@ -10,7 +10,7 @@
   "author": "Arijit Deb",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "mongoose": "^5.7.3",
     "multer": "^1.4.2",
     "nodemon": "^1.19.2",
